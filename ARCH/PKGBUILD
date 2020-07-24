@@ -1,19 +1,19 @@
 # Maintainer: khvalera <khvalera@ukr.net>
 
 pkgname=xfce4-snuglinux
-pkgver=0.0.2
+pkgver=0.0.3
 pkgrel=1
 pkgdesc='The default profile for xfce4'
 arch=('any')
 url='https://snuglinux.pp.ua/'
 license=('GPL')
 depends=('xfce4-session')
-source=('xfce4.tar.gz' '.xinitrc')
-md5sums=(
-'0106446df19730f7dcbec5e3c12d6b42'
-'607ff8b02d5caecff7e5189ac2ce9acd')
+source=("https://github.com/snuglinux/${pkgname}/archive/${pkgver}.tar.gz")
+
+md5sums=('916ac9271d6473853c6e681ad910ac1c')
 
 package() {
+  cd "$srcdir/${pkgname}-${pkgver}"
   install -dm 755 "${pkgdir}/etc/skel/.config"
   install -m 644  .xinitrc "${pkgdir}/etc/skel/"
   cp -R xfce4 "${pkgdir}/etc/skel/.config"
